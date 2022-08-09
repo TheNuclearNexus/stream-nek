@@ -48,9 +48,16 @@ function AudioInput({ obs, name }: AudioInputProps) {
                 volumeSlider.current.value = response.inputVolumeDb.toString()
                 setVolume(response.inputVolumeDb)
             })
-        }
 
-    }, [obs])
+            obs.on('InputVolumeChanged', (response) => {
+                if(response.inputName === name) setVolume(response.inputVolumeDb)
+            })
+        }
+        
+
+    }, [obs, name])
+
+    
 
     return <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: 16}}>
         <SquareButton style={{ backgroundImage: muted ? 'linear-gradient(#ff7979, #eb4d4b)' : '' }} onClick={() => {

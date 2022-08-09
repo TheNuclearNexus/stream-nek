@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import OBSWebSocket from 'obs-websocket-js';
 import AudioInput from './components/AudioInput';
@@ -27,6 +26,7 @@ function App() {
   const [currentScene, setCurrentScene] = useState<string>('')
   const [audioTracks, setAudioTracks] = useState<string[]>([])
   const urlInput = useRef<HTMLInputElement>(null) 
+  const passwordInput = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     return () => {
@@ -56,21 +56,25 @@ function App() {
   }
 
 
-
-  let connectURL = ''
   return (
     <div className="App" style={{ backgroundColor: '#30336b', height: '100vh' }}>
 
-      {!obs.identified && <div>
-        <input type="text" placeholder="Enter OBS URL" ref={urlInput} defaultValue={Cookies.get('obsURL')}/>
+      {!obs.identified && <ButtonDiv style={{flexDirection: 'column', alignItems: 'center', height: '75%'}}>
+        <input style={{width:196}} type="text" placeholder="Enter OBS URL" ref={urlInput} defaultValue={Cookies.get('obsURL')}/>
+        <input style={{width:196}} type="password" placeholder="Enter OBS Password" ref={passwordInput} defaultValue={Cookies.get('obsPassword')}/>
         <button onClick={async () => {
           if(urlInput.current == null || urlInput.current.value === undefined || urlInput.current.value === '') return;
+          console.log('click')
+          if(passwordInput.current == null) return;
+
           Cookies.set('obsURL', urlInput.current.value)
-          await obs.connect( urlInput.current.value, 'pZHEjHnHmHK2y7gm')
+          Cookies.set('obsPassword', passwordInput.current.value ?? '')
+
+          await obs.connect( urlInput.current.value, passwordInput.current.value ?? '')
           await generateSceneButtons()
           await generateAudioNames()
         }}>Connect</button>
-      </div>}
+      </ButtonDiv>}
       {obs.identified && <div>
         <CategoryHeader>Scenes</CategoryHeader>
         <ButtonDiv>
