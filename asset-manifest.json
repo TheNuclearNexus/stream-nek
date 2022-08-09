@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/stream-nek/static/css/main.18162ed4.css",
+    "main.js": "/stream-nek/static/js/main.d3031e87.js",
+    "static/js/787.aa036449.chunk.js": "/stream-nek/static/js/787.aa036449.chunk.js",
+    "static/media/Swansea.ttf": "/stream-nek/static/media/Swansea.4a153a94d50ddf3a3fcb.ttf",
+    "index.html": "/stream-nek/index.html",
+    "main.18162ed4.css.map": "/stream-nek/static/css/main.18162ed4.css.map",
+    "main.d3031e87.js.map": "/stream-nek/static/js/main.d3031e87.js.map",
+    "787.aa036449.chunk.js.map": "/stream-nek/static/js/787.aa036449.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18162ed4.css",
+    "static/js/main.d3031e87.js"
+  ]
+}
